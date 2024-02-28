@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Room</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        #chat-box {
+            border: 1px solid #ccc;
+            height: 300px;
+            overflow-y: scroll;
+            padding: 10px;
+        }
+        #input-box {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Chat Room</h1>
+        <div id="chat-box"></div>
+        <input type="text" id="input-box" placeholder="Type your message here...">
+    </div>
+
+    <script>
+        // JavaScript for sending and receiving messages
+        const chatBox = document.getElementById('chat-box');
+        const inputBox = document.getElementById('input-box');
+
+        function addMessage(message) {
+            const messageElement = document.createElement('div');
+            messageElement.innerText = message;
+            chatBox.appendChild(messageElement);
+            // Scroll to bottom
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        inputBox.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                const message = inputBox.value;
+                addMessage('You: ' + message);
+                // Here you can send the message to a server for processing or handle it as you wish
+                // For demonstration, let's just clear the input box
+                inputBox.value = '';
+            }
+        });
+    </script>
+</body>
+</html>
